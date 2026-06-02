@@ -65,17 +65,14 @@ TAX_STRUCTURE = {
 # =========================
 # 3. UI STREAMLIT
 # =========================
-#st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
-st.set_page_config(
-    page_title="Kalkulator Paliw ecb3fa566077b260ab26f75ff7efd738", # Token bezpośrednio w tagu <title> strony!
-    layout="centered"
-)
+st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
+
 # ==============================================================================
 # UKRYTY KOD WERYFIKACYJNY MYLEAD (Niewidoczny dla użytkownika, widoczny dla bota)
 # ==============================================================================
 st.markdown("<!-- mylead-verification: ecb3fa566077b260ab26f75ff7efd738 -->", unsafe_allow_html=True)
 
-st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków ecb3fa566077b260ab26f75ff7efd738 ")
+st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków")
 st.caption("ℹ️ Ceny paliw pobierane z AutoCentrum są automatycznie odświeżane raz na dobę.")
 
 # sidebar
@@ -201,14 +198,13 @@ with col_aff1:
 with col_aff2:
     st.markdown(
         """
-        <div style="background-color: #f0f2f6; padding: 15px; border-radius: 10px; border-left: 5px solid #00a86b; height: 100%;">
-            <h4>💳 Zwrot za paliwo (Cashback)</h4>
-            <p>Załóż darmowe konto i odbieraj do 5% zwrotu za każde tankowanie na stacjach benzynowych w całej Polsce.</p>
+        <div style="background-color: #f0f2f6; padding: 15px; border-radius: 10px; border-left: 5px solid #1428a0; height: 100%;">
+            <h4>💳 Darmowe paliwo od PKO BP</h4>
+            <p>Załóż kultowe Konto za Zero w aktualnej promocji i zgarnij gwarantowaną premię gotówkową na start. Wykorzystaj darmowe środki, aby sfinansować kolejny pełny bak paliwa!</p>
         </div>
         """, 
         unsafe_allow_html=True
     )
-    # Twój drugi link afiliacyjny
-    st.link_button("🎁 Odbierz zwrot za paliwo", "https://twoj-link-afiliacyjny-do-banku.pl")
+    # Wklej tutaj swój unikalny link partnerski wygenerowany w MyLead dla kampanii PKO BP
+    st.link_button("🎁 Odbierz premię od PKO BP", "https://twoj-link-afiliacyjny-do-pko.pl")
 
-st.caption("Verification token: ecb3fa566077b260ab26f75ff7efd738")
