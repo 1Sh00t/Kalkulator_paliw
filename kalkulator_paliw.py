@@ -55,11 +55,11 @@ df_prices = get_fuel_data()
 # 2. STRUKTURA PODATKÓW
 # =========================
 TAX_STRUCTURE = {
-    "95":   {"netto": 0.45, "vat": 0.19, "akcyza": 0.25, "oplaty": 0.08, "marza": 0.03},
-    "98":   {"netto": 0.45, "vat": 0.19, "akcyza": 0.25, "oplaty": 0.08, "marza": 0.03},
-    "ON":   {"netto": 0.50, "vat": 0.19, "akcyza": 0.20, "oplaty": 0.08, "marza": 0.03},
-    "ON+":  {"netto": 0.50, "vat": 0.19, "akcyza": 0.20, "oplaty": 0.08, "marza": 0.03},
-    "LPG":  {"netto": 0.48, "vat": 0.19, "akcyza": 0.16, "oplaty": 0.12, "marza": 0.05}
+    "95":   {"netto": 0.45, "vat": 0.08, "akcyza": 0.24, "oplaty": 0.08, "marza": 0.03},
+    "98":   {"netto": 0.45, "vat": 0.08, "akcyza": 0.24, "oplaty": 0.08, "marza": 0.03},
+    "ON":   {"netto": 0.50, "vat": 0.08, "akcyza": 0.20, "oplaty": 0.08, "marza": 0.03},
+    "ON+":  {"netto": 0.50, "vat": 0.08, "akcyza": 0.20, "oplaty": 0.08, "marza": 0.03},
+    "LPG":  {"netto": 0.48, "vat": 0.08, "akcyza": 0.16, "oplaty": 0.12, "marza": 0.05}
 }
 
 # =========================
