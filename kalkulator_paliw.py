@@ -75,7 +75,7 @@ st.set_page_config(
 # ==============================================================================
 st.markdown("<!-- mylead-verification: ecb3fa566077b260ab26f75ff7efd738 -->", unsafe_allow_html=True)
 
-st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków")
+st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków ecb3fa566077b260ab26f75ff7efd738 ")
 st.caption("ℹ️ Ceny paliw pobierane z AutoCentrum są automatycznie odświeżane raz na dobę.")
 
 # sidebar
