@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+import plotly.express as px
 
 # =========================
-# 1. SCRAPER
+# 1. SCRAPER (Aktualizacja raz na dobę za pomocą ttl=86400 sekund)
 # =========================
-@st.cache_data
+@st.cache_data(ttl=86400)  # Dane są zamrożone w pamięci podręcznej przez 24 godziny
 def get_fuel_data():
     url = "https://www.autocentrum.pl/paliwa/ceny-paliw/"
     response = requests.get(url)
@@ -66,7 +67,8 @@ TAX_STRUCTURE = {
 # =========================
 st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
 
-st.title("⛽ Kalkulator kosztów paliwa")
+st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków")
+st.caption("ℹ️ Ceny paliw pobierane z AutoCentrum są automatycznie odświeżane raz na dobę.")
 
 # sidebar
 st.sidebar.header("Parametry")
@@ -112,23 +114,57 @@ akcyza = koszt * tax["akcyza"]
 oplaty = koszt * tax["oplaty"]
 marza = koszt * tax["marza"]
 
+# Podział binarny na czysty koszt vs państwo
+suma_podatkow = vat + akcyza + oplaty + marza
+
 # =========================
 # 6. WYNIKI
 # =========================
-st.subheader(f"📍 {wojewodztwo}")
+st.subheader(f"📊 Wyniki kalkulacji dla województwa: **{wojewodztwo}**")
 
 col1, col2, col3 = st.columns(3)
-
-col1.metric("Cena/l", f"{cena_litr:.2f} zł")
-col2.metric("Litry", f"{litry:.2f}")
-col3.metric("Koszt", f"{koszt:.2f} zł")
+col1.metric("Cena paliwa", f"{cena_litr:.2f} zł/l")
+col2.metric("Potrzebne paliwo", f"{litry:.2f} l")
+col3.metric("Łączny koszt (Brutto)", f"{koszt:.2f} zł")
 
 st.markdown("---")
 
-st.write("### 💰 Podział kosztów")
+# Prezentacja głównych bloków kosztów
+col_paliwo, col_podatki = st.columns(2)
+with col_paliwo:
+    st.info(f"**Cena czystego paliwa:**  \n### {netto:.2f} zł")
+with col_podatki:
+    st.warning(f"**Podatki i marże (Ukryte koszty):**  \n### {suma_podatkow:.2f} zł")
 
-st.write(f"Czyste paliwo: {netto:.2f} zł")
-st.write(f"VAT: {vat:.2f} zł")
-st.write(f"Akcyza: {akcyza:.2f} zł")
-st.write(f"Opłaty: {oplaty:.2f} zł")
-st.write(f"Marża: {marza:.2f} zł")
+# Wizualizacja za pomocą wykresu kołowego (Plotly)
+st.write("### 📈 Wizualizacja struktury ceny")
+
+# Przygotowanie danych do wykresu
+chart_data = pd.DataFrame({
+    "Składnik": ["Czyste paliwo (Netto)", "Podatek VAT", "Akcyza", "Opłaty paliwowe", "Marża stacji"],
+    "Kwota (zł)": [netto, vat, akcyza, oplaty, marza]
+})
+
+# Generowanie wykresu
+fig = px.pie(
+    chart_data, 
+    values="Kwota (zł)", 
+    names="Składnik",
+    hole=0.4,  # Wykres typu "Donut" dla lepszej czytelności
+    color_discrete_sequence=px.colors.sequential.YlOrRd[::-1]  # Ładne odcienie czerwieni i żółci
+)
+
+fig.update_traces(textposition='inside', textinfo='percent+label')
+fig.update_layout(showlegend=False, margin=dict(t=10, b=10, l=10, r=10))
+
+# Wyświetlenie wykresu w Streamlit
+st.plotly_chart(fig, use_container_width=True)
+
+# Szczegółowa tabela pod wykresem
+st.write("### 🔍 Szczegółowe zestawienie kosztów:")
+st.write(f"• **Czyste paliwo:** {netto:.2f} zł ({tax['netto']*100:.0f}%)")
+st.write(f"• **Podatek VAT:** {vat:.2f} zł ({tax['vat']*100:.0f}%)")
+st.write(f"• **Akcyza:** {akcyza:.2f} zł ({tax['akcyza']*100:.0f}%)")
+st.write(f"• **Opłaty drogowe i środowiskowe:** {oplaty:.2f} zł ({tax['oplaty']*100:.0f}%)")
+st.write(f"• **Szacowana marża stacji:** {marza:.2f} zł ({tax['marza']*100:.0f}%)")
+
