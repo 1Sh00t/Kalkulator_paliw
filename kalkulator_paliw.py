@@ -65,8 +65,11 @@ TAX_STRUCTURE = {
 # =========================
 # 3. UI STREAMLIT
 # =========================
-st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
-
+#st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
+st.set_page_config(
+    page_title="Kalkulator Paliw ecb3fa566077b260ab26f75ff7efd738", # Token bezpośrednio w tagu <title> strony!
+    layout="centered"
+)
 # ==============================================================================
 # UKRYTY KOD WERYFIKACYJNY MYLEAD (Niewidoczny dla użytkownika, widoczny dla bota)
 # ==============================================================================
