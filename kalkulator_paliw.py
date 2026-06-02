@@ -67,6 +67,11 @@ TAX_STRUCTURE = {
 # =========================
 st.set_page_config(page_title="Kalkulator Paliw", layout="centered")
 
+# ==============================================================================
+# UKRYTY KOD WERYFIKACYJNY MYLEAD (Niewidoczny dla użytkownika, widoczny dla bota)
+# ==============================================================================
+st.markdown("<!-- mylead-verification: ecb3fa566077b260ab26f75ff7efd738 -->", unsafe_allow_html=True)
+
 st.title("⛽ Kalkulator kosztów paliwa i ukrytych podatków")
 st.caption("ℹ️ Ceny paliw pobierane z AutoCentrum są automatycznie odświeżane raz na dobę.")
 
@@ -168,3 +173,37 @@ st.write(f"• **Akcyza:** {akcyza:.2f} zł ({tax['akcyza']*100:.0f}%)")
 st.write(f"• **Opłaty drogowe i środowiskowe:** {oplaty:.2f} zł ({tax['oplaty']*100:.0f}%)")
 st.write(f"• **Szacowana marża stacji:** {marza:.2f} zł ({tax['marza']*100:.0f}%)")
 
+# =========================
+# 7. SEKCJA AFILIACYJNA (ZAROBKOWA)
+# =========================
+st.markdown("---")
+st.subheader("💡 Jak płacić mniej za podróż?")
+
+# Tworzymy układ dwóch kolumn na oferty
+col_aff1, col_aff2 = st.columns(2)
+
+with col_aff1:
+    st.markdown(
+        """
+        <div style="background-color: #f0f2f6; padding: 15px; border-radius: 10px; border-left: 5px solid #ff4b4b; height: 100%;">
+            <h4>🚗 Tanie ubezpieczenie OC/AC</h4>
+            <p>Koszty paliwa rosną, ale na ubezpieczeniu możesz zaoszczędzić nawet do 500 zł. Sprawdź darmowy kalkulator i znajdź najtańszą ofertę.</p>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+    # Twój link afiliacyjny jako estetyczny przycisk
+    st.link_button("🔥 Porównaj ceny OC/AC", "https://twoj-link-afiliacyjny-z-rankomat.pl")
+
+with col_aff2:
+    st.markdown(
+        """
+        <div style="background-color: #f0f2f6; padding: 15px; border-radius: 10px; border-left: 5px solid #00a86b; height: 100%;">
+            <h4>💳 Zwrot za paliwo (Cashback)</h4>
+            <p>Załóż darmowe konto i odbieraj do 5% zwrotu za każde tankowanie na stacjach benzynowych w całej Polsce.</p>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+    # Twój drugi link afiliacyjny
+    st.link_button("🎁 Odbierz zwrot za paliwo", "https://twoj-link-afiliacyjny-do-banku.pl")
