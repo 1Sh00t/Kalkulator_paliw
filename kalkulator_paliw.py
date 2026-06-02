@@ -207,3 +207,5 @@ with col_aff2:
     )
     # Twój drugi link afiliacyjny
     st.link_button("🎁 Odbierz zwrot za paliwo", "https://twoj-link-afiliacyjny-do-banku.pl")
+
+st.caption("Verification token: ecb3fa566077b260ab26f75ff7efd738")
