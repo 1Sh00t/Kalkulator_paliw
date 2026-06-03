@@ -193,7 +193,7 @@ with col_aff1:
         unsafe_allow_html=True
     )
     # Twój link afiliacyjny jako estetyczny przycisk
-    st.link_button("🔥 Porównaj ceny OC/AC", "https://twoj-link-afiliacyjny-z-rankomat.pl")
+    st.link_button("🔥 Porównaj ceny OC/AC", "https://clicknlook.site/a/pYA4whAP8QTJZvq")
 
 with col_aff2:
     st.markdown(
@@ -206,5 +206,5 @@ with col_aff2:
         unsafe_allow_html=True
     )
     # Wklej tutaj swój unikalny link partnerski wygenerowany w MyLead dla kampanii PKO BP
-    st.link_button("🎁 Odbierz premię od PKO BP", "https://twoj-link-afiliacyjny-do-pko.pl")
+    st.link_button("🎁 Odbierz premię od PKO BP", "https://clicknlook.site/a/rkDjZh28jQfjDx5")
 
